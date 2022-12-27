@@ -10,6 +10,12 @@ var allQuestionsEl= document.querySelector('.all-questions');
 var nextbuttonEl= document.querySelector('#startBtn');
 var anyBtn = document.querySelectorAll("button");
 var seconds = 30;
+var signUpButton = document.querySelector("#sign-up");
+var emailInput = document.querySelector("#email");
+var passwordInput = document.querySelector("#password");
+var msgDiv = document.querySelector("#msg");
+var initialForm = document.querySelector(".clearfix");
+
 // This class is in HTML
 var timeEl = document.querySelector(".time");
 var wrong = document.createElement("li");
@@ -62,8 +68,11 @@ function setTime() {
 			// Stops execution of action at set interval
 			clearInterval(timerInterval);
 			// Calls function to display the points
-			displayPoints(points);
 			seconds = 30;
+			initialForm.style.display = "";
+			displayPoints(points);
+
+
 		}
 	//This is the timing interval between each second, here's 1000miliseconds = 1 second
 	// Basically after every 1000 milisecond it will run the first argument(which is a whole ass function)
@@ -121,6 +130,8 @@ function displayPoints(points) {
 	timeEl.style.display = "none";
 	nextbuttonEl.style.display = "";
 	i = 0;
+	// create a query element that will contain a submit box that we can fill out with our initials 
+	showInitials();
 
 }
 
@@ -128,8 +139,10 @@ function displayPoints(points) {
 // will be displayed on the screen. Then the question
 // textContent will be changed
 nextbuttonEl.addEventListener ("click", function() {
+	initialForm.style.display = "none";
+
 	allQuestionsEl.style.display = "";
-	var i = 0;
+	// var i = 0;
 	setTime();
 	displayQuestions();
 	nextbuttonEl.style.display = "none";
@@ -137,8 +150,56 @@ nextbuttonEl.addEventListener ("click", function() {
 
 allQuestionsEl.addEventListener("click", checkAnswer);
 
+signUpButton.addEventListener("click", function(event) {
+	event.preventDefault();
+	
+	var email = document.querySelector("#email").value;
+	var password = document.querySelector("#password").value;
+	
+	if (email === "") {
+		displayMessage("error", "Email cannot be blank");
+	} else if (password === "") {
+		displayMessage("error", "Password cannot be blank");
+	} else {
+		displayMessage("success", "Registered successfully");
+	
+	// TODO: Save email and password to localStorage and render the last registered user
+	// LOOK AT LINES 35 ADN 36
+	localStorage.setItem("last-email", email);
+	localStorage.setItem("last-pwd", password);
+	// We will run the function when it has been clicked
+	renderLastRegistered();
+	
+	}
+});	  
+
+
+
+function renderLastRegistered() {
+	// TODO: Retrieve the last email and password and render it to the page
+	var lastEmail = localStorage.getItem("last-email");
+	var lastPwd = localStorage.getItem("last-pwd");
+	// if email is not empty then store the text content of the last email itno lastEmail
+	if (lastEmail) {
+	  // IMPORTANT:
+	  // Store it into the variable and then display it
+	  userEmailSpan.textContent = lastEmail;
+	}
+	if (lastPwd) {
+	  userPasswordSpan.textContent = lastPwd;
+	}
+  
+  
+}
+function displayMessage(type, message) {
+msgDiv.textContent = message;
+msgDiv.setAttribute("class", type);
+}
+  
 function init () {
 	allQuestionsEl.style.display = "none";
+	initialForm.style.display = "none";
+
 
 }
 init();

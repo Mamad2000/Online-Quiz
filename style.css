@@ -50,13 +50,49 @@ button:hover {
     justify-content: center;
     background-color: azure;
     margin-left: 40%;
-    margin-top: 40px;
+    /* margin-right: 50%; */
+    margin-top: 20px;
     padding: 50px;
     font-weight: bolder;
     border-radius: 100%;
+    align-items: center;
 }
 
 #startBtn:hover {
     background-color: greenyellow;
     font-weight: bolder;
 }
+
+
+  .input-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .card {
+    background-color: #fff;
+    border: 1px solid #eceff1;
+    border-radius: 8px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 1px 3px 1px;
+    margin: 2%;
+    margin-top: 80px;
+    padding: 20px;
+    width: 46%;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    /* margin-left: 40%; */
+  }
+  
+  .card::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  
+  .clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  
