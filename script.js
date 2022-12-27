@@ -120,7 +120,7 @@ function displayPoints(points) {
 	titleEl.style.display = "none";
 	timeEl.style.display = "none";
 	nextbuttonEl.style.display = "";
-
+	i = 0;
 
 }
 
