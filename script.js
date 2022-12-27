@@ -64,7 +64,6 @@ function setTime() {
 			// Calls function to display the points
 			displayPoints(points);
 			seconds = 30;
-			// sendMessage();
 		}
 	//This is the timing interval between each second, here's 1000miliseconds = 1 second
 	// Basically after every 1000 milisecond it will run the first argument(which is a whole ass function)
@@ -79,9 +78,7 @@ function displayQuestions() {
 		question2El.textContent = questions[i].choice02;
 		question3El.textContent = questions[i].choice03;
 		question4El.textContent = questions[i].choice04;
-		// if (clicked.textContent === question[3].correct) {
-		// 	displayPoints();
-		// }
+
 }
 
 // This function will check whether the answer is correct
@@ -103,9 +100,13 @@ function checkAnswer(event) {
 			window.alert("Wrong Answer! You got penalised 5 Seconds 🥲")
 			seconds = seconds - 5;
 		}
+		if (i === 3) {
+			displayPoints(points);
+		}
 
 		i++;
 		displayQuestions();
+
 	}
 	
 }
@@ -126,7 +127,7 @@ function displayPoints(points) {
 //if the user clicks on the start button a timer 
 // will be displayed on the screen. Then the question
 // textContent will be changed
-nextbuttonEl.addEventListener ("click", function(event) {
+nextbuttonEl.addEventListener ("click", function() {
 	allQuestionsEl.style.display = "";
 	var i = 0;
 	setTime();
